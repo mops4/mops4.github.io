@@ -5,20 +5,149 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ps4 poops</title>
 <style>
-  html, body { margin:0; padding:0; background:#0b0d10; color:#c8ced8;
-               font:15px/1.45 "Segoe UI", system-ui, sans-serif; }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 10px; }
-  #out { white-space:pre-wrap; font:12px/1.45 Consolas, monospace;
-         background:#11151b; border:1px solid #1e2732; border-radius:5px;
-         padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  /* إعدادات المتغيرات للألوان الرئيسية */
+  :root {
+    --bg-color: #0a0c10;
+    --text-color: #d1d5db;
+    --accent-color: #00aaff; /* لون أزرق بلايستيشن */
+    --brand-bg: #10141a;
+    --terminal-bg: #050608;
+    --border-color: #2a3341;
+    --success-color: #4ade80;
+    --error-color: #f87171;
+    --warn-color: #fb923c;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { 
+    margin: 0; 
+    padding: 0; 
+    background-color: var(--bg-color); 
+    color: var(--text-color);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* لمنع شريط التمرير المزدوج */
+  }
+
+  /* تنسيق الهيدر العلوي */
+  #brand { 
+    text-align: center; 
+    padding: 15px 10px; 
+    background-color: var(--brand-bg);
+    border-bottom: 2px solid var(--border-color); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    flex-shrink: 0; /* منع الهيدر من الانكماش */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #brand img { 
+    width: 35px; 
+    height: 35px; 
+    margin-right: 12px; 
+    border-radius: 50%;
+    vertical-align: middle; 
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+  }
+
+  #brand b { 
+    font-size: 18px; 
+    font-weight: 800; 
+    letter-spacing: 0.15em;
+    color: #ffffff; 
+    vertical-align: middle; 
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  }
+
+  /* تنسيق الحاوية الرئيسية */
+  #wrap { 
+    padding: 25px; 
+    flex-grow: 1; /* تأخذ باقي المساحة الطولية */
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* تنسيق رسالة الحالة */
+  #state { 
+    font-size: 24px; 
+    font-weight: 700; 
+    margin: 0 0 20px 0; 
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* إضافة نقطة وامضة بجانب النص لإضفاء حيوية */
+  #state::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0 0 10px var(--accent-color);
+    animation: pulse 1.5s infinite;
+  }
+
+  /* تنسيق نافذة المخرجات (الشاشة السوداء) */
+  #out { 
+    white-space: pre-wrap; 
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    background-color: var(--terminal-bg); 
+    border: 1px solid var(--border-color); 
+    border-radius: 8px;
+    padding: 15px 20px; 
+    flex-grow: 1; /* تأخذ باقي مساحة الـ wrap */
+    overflow-y: auto; 
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    scrollbar-width: thin; /* لتنسيق شريط التمرير في فايرفوكس */
+    scrollbar-color: var(--border-color) transparent;
+  }
+
+  /* تنسيق شريط التمرير للمتصفحات المبنية على كروميوم */
+  #out::-webkit-scrollbar {
+    width: 8px;
+  }
+  #out::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #out::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
+  }
+
+  /* ألوان التنبيهات الأصلية مع تحسين السطوع */
+  .ok { color: var(--success-color); font-weight: bold; } 
+  .bad { color: var(--error-color); font-weight: bold; } 
+  .warn { color: var(--warn-color); font-weight: bold; }
+
+  /* أنيميشن النبض */
+  @keyframes pulse {
+    0% { opacity: 0.5; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.5; transform: scale(0.9); }
+  }
+
+  /* تحسينات للشاشات الصغيرة */
+  @media (max-width: 600px) {
+    #wrap { padding: 15px; }
+    #state { font-size: 20px; }
+    #brand b { font-size: 16px; }
+  }
 </style>
 </head>
 <body>
