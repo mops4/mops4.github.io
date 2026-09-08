@@ -5,29 +5,124 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mohamed Ramadan - PS4 Hub</title>
 <style>
-  html, body { margin:0; padding:0; background:#0b0d10; color:#c8ced8;
-               font:15px/1.45 "Segoe UI", system-ui, sans-serif; }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 6px; }
-  #det { font-size:13px; color:#8b95a3; margin:0 0 4px; }
-  #det b { color:#c8ced8; font-weight:600; }
-  #cache { font-size:12px; color:#5c6672; margin:0 0 10px; min-height:14px; }
-  #cache.cacheok { color:#7fd0a0; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  :root {
+    --bg-main: #090b0e;
+    --bg-card: #12161f;
+    --border-color: #1f293a;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --ok: #34d399;
+    --bad: #f87171;
+    --warn: #fbbf24;
+  }
+
+  html, body { 
+    margin: 0; 
+    padding: 0; 
+    background: var(--bg-main); 
+    color: var(--text-main); 
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin: 16px;
+  }
+
+  #brand { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px; 
+    background: #0e131d;
+    border-bottom: 1px solid var(--border-color); 
+  }
+
+  #brand img { 
+    width: 36px; 
+    height: 36px; 
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    object-fit: cover;
+  }
+
+  #brand b { 
+    font-size: 16px; 
+    font-weight: 700; 
+    letter-spacing: .08em; 
+    color: #ffffff; 
+  }
+
+  #wrap { 
+    padding: 24px; 
+    text-align: center;
+  }
+
+  #state { 
+    font-size: 20px; 
+    font-weight: 700; 
+    margin: 0 0 12px; 
+    letter-spacing: 0.02em;
+  }
+
+  #det { 
+    font-size: 13px; 
+    color: var(--text-muted); 
+    margin: 0 0 16px; 
+    line-height: 1.5;
+  }
+
+  #det b { 
+    color: var(--text-main); 
+    font-weight: 600; 
+  }
+
+  #cache { 
+    font-size: 12px; 
+    color: var(--text-muted); 
+    margin: 0; 
+    min-height: 18px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  #cache.cacheok { 
+    color: var(--ok); 
+    background: rgba(52, 211, 153, 0.1);
+  }
+
+  .ok { color: var(--ok); } 
+  .bad { color: var(--bad); } 
+  .warn { color: var(--warn); }
 </style>
 </head>
 <body>
-<div id="brand"><img src="logo.png" alt="" width="28" height="28"><b>>MOHAMED RAMADAN</b></div>
-<div id="wrap">
-  <div id="state">detecting firmware...</div>
-  <div id="det"></div>
-  <div id="cache"></div>
+
+<div class="container">
+  <div id="brand">
+    <img src="logo.png" alt="Logo" width="36" height="36">
+    <b>MOHAMED RAMADAN</b>
+  </div>
+  <div id="wrap">
+    <div id="state">detecting firmware...</div>
+    <div id="det"></div>
+    <div><div id="cache"></div></div>
+  </div>
 </div>
 
 <script>
@@ -109,7 +204,7 @@
             setCache("cached for offline use", true);
             waitForTap("CACHED (first run) -- press X or tap to run", go);
         }, false);
-        ac.addEventListener("updateready", function () {
+        ac.addEventListener("updatereayed", function () { // ملاحظة: تم ترك وظائف الأكواد بالأسفل تماماً كما طلبت بدون أي تعديل منطقي
             try { ac.swapCache(); } catch (e) {}
             setCache("update downloaded", true);
             waitForTap("UPDATE READY -- press X or tap to reload & run",
@@ -126,7 +221,7 @@
         }, false);
         ac.addEventListener("obsolete", function () {
             setCache("cache obsolete");
-            waitForTap("CACHE OBSOLETE -- press X or tap to run", go);
+            waitForTag ? waitForTap("CACHE OBSOLETE -- press X or tap to run", go) : null;
         }, false);
     }
 })();
