@@ -2,31 +2,253 @@
 <html lang="en" manifest="cache.appcache">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ps4 lapse</title>
 <style>
-  html, body { margin:0; padding:0; background:#0b0d10; color:#c8ced8;
-               font:15px/1.45 "Segoe UI", system-ui, sans-serif; }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 10px; }
-  #out { white-space:pre-wrap; font:12px/1.45 Consolas, monospace;
-         background:#11151b; border:1px solid #1e2732; border-radius:5px;
-         padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #03070f;
+    background-image: 
+      radial-gradient(circle at 15% 30%, rgba(0, 102, 255, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 85% 70%, rgba(0, 170, 255, 0.14) 0%, transparent 45%),
+      linear-gradient(180deg, #02050b 0%, #060d1a 100%);
+    color: #c8ced8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ====== الشريط العلوي والهوية ====== */
+  #brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    background: rgba(6, 15, 30, 0.85);
+    border-bottom: 2px solid rgba(0, 153, 255, 0.35);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  .brand-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  #brand img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #00aaff;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.6);
+  }
+  #brand b {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+  }
+  .brand-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #38bdf8;
+    padding: 3px 8px;
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 4px;
+    background: rgba(0, 153, 255, 0.1);
+  }
+  .ps-shapes-mini {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 900;
+  }
+  .shape-t { color: #00f0aa; }
+  .shape-c { color: #ff4b60; }
+  .shape-x { color: #4b8eff; }
+  .shape-s { color: #ff62ba; }
+
+  /* ====== الحاوية الرئيسية ومربع الحالة ====== */
+  #wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 28px;
+    gap: 14px;
+    min-height: 0;
+  }
+
+  /* بطاقة الحالة النيون */
+  .state-box {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(6, 18, 36, 0.85);
+    border: 2px solid #0099ff;
+    border-radius: 14px;
+    padding: 12px 20px;
+    box-shadow: 
+      0 0 20px rgba(0, 153, 255, 0.3),
+      inset 0 0 15px rgba(0, 153, 255, 0.12);
+  }
+  .pulse-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00e1ff;
+    box-shadow: 0 0 12px #00e1ff;
+    animation: pulse 1.2s infinite ease-in-out;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 10px #00e1ff); }
+  }
+
+  #state {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 0 0 8px rgba(0, 170, 255, 0.6);
+  }
+
+  /* ====== شاشة الأوامر والـ Logs (Terminal HUD) ====== */
+  .terminal-frame {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(4, 11, 22, 0.95);
+    border: 2px solid rgba(0, 153, 255, 0.45);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 
+      0 0 25px rgba(0, 0, 0, 0.8),
+      inset 0 0 20px rgba(0, 153, 255, 0.08);
+    min-height: 0;
+  }
+  .terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background: rgba(6, 18, 36, 0.9);
+    border-bottom: 1px solid rgba(0, 153, 255, 0.25);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #6382a1;
+    text-transform: uppercase;
+  }
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .dot-r { background: #ff5269; }
+  .dot-y { background: #ffd000; }
+  .dot-g { background: #00f0aa; }
+
+  /* نافذة الطباعة الأصلية */
+  #out {
+    flex: 1;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font: 13px/1.6 Consolas, "Lucida Console", Monaco, monospace;
+    color: #79c0ff;
+    padding: 16px 20px;
+    margin: 0;
+    background: transparent;
+    border: none;
+    overflow-y: auto;
+  }
+
+  /* تخصيص شريط التمرير */
+  #out::-webkit-scrollbar {
+    width: 6px;
+  }
+  #out::-webkit-scrollbar-track {
+    background: rgba(3, 8, 16, 0.5);
+  }
+  #out::-webkit-scrollbar-thumb {
+    background: #0099ff;
+    border-radius: 3px;
+    box-shadow: 0 0 6px #0099ff;
+  }
+
+  /* ألوان التنبيه الرسمية */
+  .ok { color: #4ade80 !important; text-shadow: 0 0 8px rgba(74, 222, 128, 0.6); }
+  .bad { color: #f43f5e !important; text-shadow: 0 0 8px rgba(244, 63, 94, 0.6); }
+  .warn { color: #38bdf8 !important; text-shadow: 0 0 8px rgba(56, 189, 248, 0.6); }
+
+  /* ====== الفوتر المصغر ====== */
+  .bottom-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #415770;
+    text-transform: uppercase;
+  }
 </style>
 </head>
 <body>
-<div id="brand"><img src="logo_raw.png" alt="" width="28" height="28"><b>RAW GAME</b></div>
-<div id="wrap">
-  <div id="state">loading lapse chain...</div>
-  <div id="out"></div>
+
+<div id="brand">
+  <div class="brand-left">
+    <img src="logo_raw.png" alt="" width="32" height="32">
+    <b>MOHAMED RAMADAN</b>
+    <span class="brand-tag">PS4 LAPSE</span>
+  </div>
+  <div class="ps-shapes-mini">
+    <span class="shape-t">△</span>
+    <span class="shape-c">○</span>
+    <span class="shape-x">✕</span>
+    <span class="shape-s">□</span>
+  </div>
 </div>
+
+<div id="wrap">
+  <!-- كارت الحالة المتوهج -->
+  <div class="state-box">
+    <div class="pulse-dot"></div>
+    <div id="state">loading lapse chain...</div>
+  </div>
+
+  <!-- شاشة الـ Console المضيئة -->
+  <div class="terminal-frame">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <div>PAYLOAD EXECUTION CONSOLE</div>
+      <div>LIVE LOGS</div>
+    </div>
+    <div id="out"></div>
+  </div>
+
+  <div class="bottom-info">
+    <div>PLAY HAS NO LIMITS</div>
+    <div>MOHAMED RAMADAN &mdash; PS4 HUB</div>
+  </div>
+</div>
+
 <script type="module">import "./chain_lapse.js";</script>
 </body>
 </html>
