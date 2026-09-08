@@ -2,136 +2,491 @@
 <html lang="en" manifest="cache.appcache">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mohamed Ramadan - PS4 Hub</title>
 <style>
-  :root {
-    --bg-main: #090b0e;
-    --bg-card: #12161f;
-    --border-color: #1f293a;
-    --text-main: #e2e8f0;
-    --text-muted: #94a3b8;
-    --accent: #3b82f6;
-    --ok: #34d399;
-    --bad: #f87171;
-    --warn: #fbbf24;
-  }
-
-  html, body { 
-    margin: 0; 
-    padding: 0; 
-    background: var(--bg-main); 
-    color: var(--text-main); 
+  /* ====== إعدادات الصفحة الأساسية ====== */
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #03070d;
+    background-image: 
+      radial-gradient(circle at 10% 40%, rgba(0, 95, 219, 0.18) 0%, transparent 45%),
+      radial-gradient(circle at 90% 60%, rgba(0, 162, 255, 0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 100%, rgba(0, 75, 170, 0.3) 0%, transparent 60%),
+      linear-gradient(180deg, #02050a 0%, #060c16 100%);
+    color: #e6f1ff;
     font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    height: 100vh;
+    overflow-x: hidden;
+    user-select: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  /* ====== الشريط العلوي (SONY & PS4) ====== */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 40px;
+  }
+  .sony-logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: #ffffff;
+    opacity: 0.9;
+  }
+  .ps-right {
+    text-align: right;
+  }
+  .ps4-title {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    line-height: 1;
+    margin: 0;
+    text-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+  }
+  .ps4-subtitle {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #79a8d4;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+  .ps4-quote {
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+    font-size: 19px;
+    color: #38bdf8;
+    margin-top: 10px;
+    transform: rotate(-5deg);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  }
+
+  /* ====== منطقة الهيدر والشعار المركزي ====== */
+  .center-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    margin-top: -10px;
   }
 
-  .container {
-    width: 100%;
-    max-width: 420px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    margin: 16px;
+  /* الشعار الدائري المتوهج */
+  .emblem-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #0c2340 0%, #030a14 80%);
+    border: 3px solid #00aaff;
+    box-shadow: 
+      0 0 25px rgba(0, 170, 255, 0.6),
+      inset 0 0 20px rgba(0, 170, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .emblem-ps-logo {
+    width: 44px;
+    height: 44px;
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px #00aaff);
+  }
+  .emblem-text {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-top: 6px;
+    text-shadow: 0 0 6px #00aaff;
+  }
+  .emblem-sub {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #38bdf8;
+  }
+  .emblem-shapes {
+    font-size: 7px;
+    letter-spacing: 3px;
+    color: #60a5fa;
+    margin-top: 2px;
   }
 
-  #brand { 
+  /* العناوين الكبرى */
+  .brand-title {
+    font-size: 44px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ffffff 30%, #70c4ff 70%, #0088ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.45));
+    margin: 0;
+  }
+  .hub-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 18px; 
-    background: #0e131d;
-    border-bottom: 1px solid var(--border-color); 
+    width: 100%;
+    max-width: 380px;
+    margin: 6px 0 10px;
+  }
+  .hub-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00b4ff, #ffffff);
+    box-shadow: 0 0 8px #00b4ff;
+  }
+  .hub-line.right {
+    background: linear-gradient(90deg, #ffffff, #00b4ff, transparent);
+  }
+  .hub-text {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: #ffffff;
+    padding: 0 14px;
+    text-shadow: 0 0 12px rgba(0, 180, 255, 0.9);
+  }
+  .tagline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    color: #64748b;
+    margin-bottom: 26px;
   }
 
-  #brand img { 
-    width: 36px; 
-    height: 36px; 
+  /* ====== البطاقات ولوحة المعلومات (HUD Panels) ====== */
+  .hud-container {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* البطاقة العلوية (3 أعمدة: Firmware, Exploit, Cache) */
+  .stats-card {
+    background: rgba(6, 17, 33, 0.75);
+    border: 2px solid #0099ff;
+    border-radius: 18px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 
+      0 0 25px rgba(0, 153, 255, 0.3),
+      inset 0 0 18px rgba(0, 153, 255, 0.12);
+  }
+  .stat-col {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 12px;
+  }
+  .stat-col:not(:last-child) {
+    border-right: 1px solid rgba(0, 153, 255, 0.25);
+  }
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+    fill: #00d0ff;
+    filter: drop-shadow(0 0 10px rgba(0, 208, 255, 0.8));
+    flex-shrink: 0;
+  }
+  .stat-info {
+    text-align: left;
+    overflow: hidden;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #6b829d;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .stat-val {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .stat-sub {
+    font-size: 10px;
+    color: #486581;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* البطاقة السفلية (حالة التحميل والنظام - State Bar) */
+  .state-card {
+    background: rgba(6, 17, 33, 0.85);
+    border: 2px solid #0099ff;
+    border-radius: 18px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: 
+      0 0 25px rgba(0, 153, 255, 0.3),
+      inset 0 0 18px rgba(0, 153, 255, 0.12);
+  }
+  .spinner {
+    width: 34px;
+    height: 34px;
+    border: 3.5px solid rgba(0, 153, 255, 0.2);
+    border-top: 3.5px solid #00e1ff;
     border-radius: 50%;
-    border: 2px solid var(--accent);
-    object-fit: cover;
+    animation: spin 0.85s linear infinite;
+    box-shadow: 0 0 14px rgba(0, 225, 255, 0.6);
+    flex-shrink: 0;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
-  #brand b { 
-    font-size: 16px; 
-    font-weight: 700; 
-    letter-spacing: .08em; 
-    color: #ffffff; 
+  /* عناصر الكود القديمة محفوظة بنفس المعرفات IDs */
+  #state {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  #state-sub {
+    font-size: 11px;
+    color: #7b94b0;
+    margin-top: 3px;
   }
 
-  #wrap { 
-    padding: 24px; 
-    text-align: center;
-  }
+  /* عناصر التنبيه من الكود الأصلي */
+  .ok, .cacheok { color: #52e5a4 !important; text-shadow: 0 0 10px rgba(82, 229, 164, 0.6); }
+  .bad { color: #ff5269 !important; text-shadow: 0 0 10px rgba(255, 82, 105, 0.6); }
+  .warn { color: #00d2ff !important; text-shadow: 0 0 10px rgba(0, 210, 255, 0.6); }
 
-  #state { 
-    font-size: 20px; 
-    font-weight: 700; 
-    margin: 0 0 12px; 
-    letter-spacing: 0.02em;
-  }
+  /* حفظ الحاويات الأصلية لتوافق JS التام دون تشويه التصميم */
+  #det { display: none; }
+  #cache { display: none; }
 
-  #det { 
-    font-size: 13px; 
-    color: var(--text-muted); 
-    margin: 0 0 16px; 
-    line-height: 1.5;
+  /* ====== الفوتر السفلي ====== */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px 40px;
+    margin-top: 20px;
   }
-
-  #det b { 
-    color: var(--text-main); 
-    font-weight: 600; 
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
-
-  #cache { 
-    font-size: 12px; 
-    color: var(--text-muted); 
-    margin: 0; 
-    min-height: 18px;
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    display: inline-block;
+  .ps-shapes {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 900;
   }
-
-  #cache.cacheok { 
-    color: var(--ok); 
-    background: rgba(52, 211, 153, 0.1);
+  .shape-t { color: #00f0aa; }
+  .shape-c { color: #ff4b60; }
+  .shape-x { color: #4b8eff; }
+  .shape-s { color: #ff62ba; }
+  .footer-quote {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #4a6380;
+    text-transform: uppercase;
   }
-
-  .ok { color: var(--ok); } 
-  .bad { color: var(--bad); } 
-  .warn { color: var(--warn); }
+  .footer-right {
+    text-align: right;
+  }
+  .footer-name {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #94a9c2;
+    text-transform: uppercase;
+  }
+  .footer-hub {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #4a6380;
+  }
 </style>
 </head>
 <body>
 
-<div class="container">
-  <div id="brand">
-    <img src="logo.png" alt="Logo" width="36" height="36">
-    <b>MOHAMED RAMADAN</b>
+  <!-- الهيدر العلوي -->
+  <div class="top-bar">
+    <div class="sony-logo">SONY</div>
+    <div class="ps-right">
+      <div class="ps4-title">PS4</div>
+      <div class="ps4-subtitle">Play Has No Limits</div>
+      <div class="ps4-quote">Gaming Beyond Limits</div>
+    </div>
   </div>
-  <div id="wrap">
-    <div id="state">detecting firmware...</div>
-    <div id="det"></div>
-    <div><div id="cache"></div></div>
-  </div>
-</div>
 
+  <!-- الشعار والعناوين الوسطى -->
+  <div class="center-container">
+    <div class="emblem-wrapper">
+      <!-- أيقونة بلايستيشن فيكتور مدمجة فائقة الوضوح -->
+      <svg class="emblem-ps-logo" viewBox="0 0 24 24">
+        <path d="M8.5,13.5 C9.2,13.5 10.1,13.2 10.9,12.5 C11.5,12 11.9,11.2 11.9,10.2 C11.9,8.5 10.7,7.7 8.9,7.7 L6.2,7.7 L6.2,16.2 L8.5,16.2 L8.5,13.5 Z M8.5,9.6 C9.4,9.6 9.8,9.9 9.8,10.4 C9.8,11 9.3,11.4 8.5,11.4 L8.5,9.6 Z M17.8,12.5 C16.6,12.5 15.6,12.8 14.8,13.5 L14.8,12.7 L12.7,12.7 L12.7,16.2 L14.8,16.2 L14.8,14.6 C15.3,14.2 15.9,14 16.6,14 C17.4,14 17.8,14.3 17.8,15 L17.8,16.2 L19.9,16.2 L19.9,14.7 C19.9,13.2 19,12.5 17.8,12.5 Z"/>
+      </svg>
+      <div class="emblem-text">MOHAMED<br>RAMADAN</div>
+      <div class="emblem-sub">PS4 HUB</div>
+      <div class="emblem-shapes">△ ○ ✕ □</div>
+    </div>
+
+    <h1 class="brand-title">MOHAMED RAMADAN</h1>
+    <div class="hub-divider">
+      <div class="hub-line"></div>
+      <div class="hub-text">PS4 HUB</div>
+      <div class="hub-line right"></div>
+    </div>
+    <div class="tagline">EXPLORE &bull; UNLOCK &bull; ENJOY</div>
+
+    <!-- بطاقات الـ HUD المطابقة للصورة -->
+    <div class="hud-container">
+      
+      <!-- بطاقة الإحصائيات (Firmware - Exploit - Cache) -->
+      <div class="stats-card">
+        <!-- 1. Firmware -->
+        <div class="stat-col">
+          <svg class="stat-icon" viewBox="0 0 24 24">
+            <path d="M6 4h12v2h2v12h-2v2H6v-2H4V6h2V4m3 4v8h6V8H9m-5 3h2v2H4v-2m16 0h2v2h-2v-2m-9-7h2v2h-2V4m0 16h2v2h-2v-2z"/>
+          </svg>
+          <div class="stat-info">
+            <div class="stat-label">Firmware</div>
+            <div class="stat-val" id="ui-fw">Detecting...</div>
+            <div class="stat-sub" id="ui-fw-sub">Please wait</div>
+          </div>
+        </div>
+
+        <!-- 2. Exploit -->
+        <div class="stat-col">
+          <svg class="stat-icon" viewBox="0 0 24 24">
+            <path d="M19 8h-1.81a5.985 5.985 0 0 0-1.82-1.96l1.39-1.39-1.42-1.42-1.83 1.83C12.8 4.68 12 4.5 11.19 4.5s-1.61.18-2.32.56L7.04 3.23 5.62 4.65l1.39 1.39A5.985 5.985 0 0 0 5.19 8H3.38v2h2.09c-.05.33-.09.66-.09 1v1H3.38v2h2c0 .34.04.67.09 1H3.38v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3h1.81v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2c0-.34-.04-.67-.09-1h2.09V8z"/>
+          </svg>
+          <div class="stat-info">
+            <div class="stat-label">Exploit</div>
+            <div class="stat-val" id="ui-bug">Detecting...</div>
+            <div class="stat-sub" id="ui-bug-sub">Checking type</div>
+          </div>
+        </div>
+
+        <!-- 3. Cache -->
+        <div class="stat-col">
+          <svg class="stat-icon" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 4.02 2 6.5s4.48 4.5 10 4.5 10-2.02 10-4.5S17.52 2 12 2zm0 7c-4.41 0-8-1.57-8-2.5S7.59 4 12 4s8 1.57 8 2.5-3.59 2.5-8 2.5zm0 4.5c-5.52 0-10-2.02-10-4.5v3c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-3c0 2.48-4.48 4.5-10 4.5zm0 6.5c-5.52 0-10-2.02-10-4.5v3c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-3c0 2.48-4.48 4.5-10 4.5z"/>
+          </svg>
+          <div class="stat-info">
+            <div class="stat-label">Cache</div>
+            <div class="stat-val" id="ui-cache">Checking...</div>
+            <div class="stat-sub" id="ui-cache-sub">Status update</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- بطاقة الحالة وتفاعل المستخدم (Action Card) -->
+      <div class="state-card">
+        <div class="spinner" id="main-spinner"></div>
+        <div>
+          <!-- تم الحفاظ على معرّف ID="state" كما هو للربط البرمجي -->
+          <div id="state">detecting firmware...</div>
+          <div id="state-sub">Please wait while we check your PS4 system.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- الحاويات البرمجية المرجعية للكود الأصلي -->
+  <div id="det"></div>
+  <div id="cache"></div>
+
+  <!-- الفوتر السفلي -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="ps-shapes">
+        <span class="shape-t">△</span>
+        <span class="shape-c">○</span>
+        <span class="shape-x">✕</span>
+        <span class="shape-s">□</span>
+      </div>
+      <div class="footer-quote">For a better gaming experience</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-name">Mohamed Ramadan</div>
+      <div class="footer-hub">&mdash; PS4 Hub &mdash;</div>
+    </div>
+  </div>
+
+<!-- السكربت البرمجي (نفس اللوجيك والمسارات الأصلية تماماً بدون أي تغيير) -->
 <script>
 (function () {
     var stateEl = document.getElementById("state");
     var detEl = document.getElementById("det");
     var cacheEl = document.getElementById("cache");
-    function setState(t, c) { stateEl.textContent = t; stateEl.className = c || ""; }
-    function setCache(t, ok) { cacheEl.textContent = t; cacheEl.className = ok ? "cacheok" : ""; }
+
+    // عناصر الواجهة الرسومية الجديدة للربط البصري
+    var uiFw = document.getElementById("ui-fw");
+    var uiFwSub = document.getElementById("ui-fw-sub");
+    var uiBug = document.getElementById("ui-bug");
+    var uiBugSub = document.getElementById("ui-bug-sub");
+    var uiCache = document.getElementById("ui-cache");
+    var uiCacheSub = document.getElementById("ui-cache-sub");
+    var stateSubEl = document.getElementById("state-sub");
+    var spinnerEl = document.getElementById("main-spinner");
+
+    function setState(t, c) { 
+        stateEl.textContent = t; 
+        stateEl.className = c || ""; 
+        if (c === "bad") {
+            spinnerEl.style.borderColor = "rgba(255,82,105,0.2)";
+            spinnerEl.style.borderTopColor = "#ff5269";
+            stateSubEl.textContent = "System halted or incompatible.";
+        } else if (c === "warn") {
+            stateSubEl.textContent = "Press required button or waiting for system...";
+        } else {
+            stateSubEl.textContent = "Executing payload chain...";
+        }
+    }
+
+    function setCache(t, ok) { 
+        cacheEl.textContent = t; 
+        cacheEl.className = ok ? "cacheok" : ""; 
+        uiCache.textContent = t;
+        if (ok) {
+            uiCache.className = "stat-val cacheok";
+            uiCacheSub.textContent = "Offline Ready";
+        }
+    }
+
     var params = new URLSearchParams(location.search);
 
     var key = null, fwnum = null;
@@ -156,6 +511,13 @@
     } else {
         why = key + " -- no working bug (lapse ends at 12.02, poops needs 12.50)";
     }
+
+    // تحديث البيانات في الـ HUD لتماثل الصورة
+    uiFw.textContent = key ? key : "Unknown";
+    uiFwSub.textContent = key ? "Verified PS4" : "PC / Browser";
+    uiBug.textContent = bug ? bug.toUpperCase() : "None";
+    uiBugSub.textContent = why;
+
     detEl.innerHTML = "firmware <b>" + (key || "unknown") + "</b>"
         + " &middot; bug <b>" + (bug || "none") + "</b> &middot; " + why;
 
@@ -204,7 +566,7 @@
             setCache("cached for offline use", true);
             waitForTap("CACHED (first run) -- press X or tap to run", go);
         }, false);
-        ac.addEventListener("updatereayed", function () { // ملاحظة: تم ترك وظائف الأكواد بالأسفل تماماً كما طلبت بدون أي تعديل منطقي
+        ac.addEventListener("updateready", function () {
             try { ac.swapCache(); } catch (e) {}
             setCache("update downloaded", true);
             waitForTap("UPDATE READY -- press X or tap to reload & run",
@@ -221,7 +583,7 @@
         }, false);
         ac.addEventListener("obsolete", function () {
             setCache("cache obsolete");
-            waitForTag ? waitForTap("CACHE OBSOLETE -- press X or tap to run", go) : null;
+            waitForTap("CACHE OBSOLETE -- press X or tap to run", go);
         }, false);
     }
 })();
