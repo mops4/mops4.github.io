@@ -1,65 +1,47 @@
-MIT License
+MOHAMED RAMADAN LICENSE
+Copyright (c) 2026 Mohamed Ramadan
 
-Copyright (c) 2026 rawgame4
+This project is a modified distribution containing original work
+and third-party components.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is granted to use, copy, modify, and distribute the
+original work created by Mohamed Ramadan, provided that this
+copyright notice and these terms are retained.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+MODIFICATIONS
+-------------
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The user interface, visual design, branding, layout, and other
+original modifications created by Mohamed Ramadan are copyrighted
+by Mohamed Ramadan.
 
-
----------------------------------------------------------------------------
 THIRD-PARTY COMPONENTS
----------------------------------------------------------------------------
+----------------------
 
-The MIT grant above covers only our own work in this repository: the PS4 port
-of the kernel chains (chain_lapse.js, chain_poops.js), the per-firmware offset
-tables (ps4_offsets.js), and the firmware detection, routing and offline
-delivery layer.
+This project contains third-party components whose copyrights and
+licenses remain with their respective authors.
 
-The following bundled files are third-party work, are NOT covered by that
-grant, and remain subject to the terms of their respective authors:
+The original copyright notices and license terms applicable to
+those components must be retained.
 
-  core.js, mem.js, int64.js, rpc_worker.js
-      SLOPKIT, by Jordy. The JavaScriptCore primitive and memory interface,
-      originally written for the PlayStation 5 and rebuilt here against the
-      PlayStation 4's WebKit build. All rights in the kit and its primitive
-      design remain with its author.
+Third-party components include:
 
-  payload.bin
-      GoldHEN, by the GoldHEN team. Redistributed unmodified.
-      https://github.com/GoldHEN/GoldHEN
+  SLOPKIT
+  Author: Jordy
 
-  patches/*.bin
-      Kernel patch blobs derived from publicly published PS4 kernel patch
-      sources, by their respective authors.
+  GoldHEN
+  Copyright and rights belong to the GoldHEN team.
+  https://github.com/GoldHEN/GoldHEN
 
-The underlying vulnerability research embodied in chain_lapse.js and
-chain_poops.js is public work by the PS4/PS5 security research community and
-is credited in README.md.
+  Other third-party files retain their respective copyrights,
+  licenses, and attribution requirements.
 
-If you hold rights to any bundled component and wish its attribution or
-licensing terms corrected or its inclusion withdrawn, please open an issue.
+NO WARRANTY
+-----------
 
+This software is provided "AS IS", without warranty of any kind.
+The authors and copyright holders shall not be liable for any
+claim, damages, or other liability arising from the use of the
+software.
 
----------------------------------------------------------------------------
-NO WARRANTY - HARDWARE RISK
----------------------------------------------------------------------------
-
-This software exploits memory-corruption vulnerabilities in console firmware.
-It can crash the console, corrupt stored data, or leave the system requiring a
-reinstall. It is provided for education and security research on hardware you
-own. You run it entirely at your own risk.
+Copyright (c) 2026 Mohamed Ramadan
