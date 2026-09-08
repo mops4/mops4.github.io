@@ -5,21 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mohamed Ramadan - PS4 Hub</title>
 <style>
-  /* ====== إعدادات الصفحة الأساسية ====== */
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #03070d;
+    background-color: #03070f;
     background-image: 
-      radial-gradient(circle at 10% 40%, rgba(0, 95, 219, 0.18) 0%, transparent 45%),
-      radial-gradient(circle at 90% 60%, rgba(0, 162, 255, 0.15) 0%, transparent 45%),
-      radial-gradient(ellipse at 50% 100%, rgba(0, 75, 170, 0.3) 0%, transparent 60%),
-      linear-gradient(180deg, #02050a 0%, #060c16 100%);
+      radial-gradient(circle at 15% 45%, rgba(0, 102, 255, 0.2) 0%, transparent 45%),
+      radial-gradient(circle at 85% 55%, rgba(0, 170, 255, 0.18) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 100%, rgba(0, 80, 180, 0.3) 0%, transparent 60%),
+      linear-gradient(180deg, #02050b 0%, #050b16 100%);
     color: #e6f1ff;
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     overflow-x: hidden;
     user-select: none;
     display: flex;
@@ -27,34 +26,34 @@
     justify-content: space-between;
   }
 
-  /* ====== الشريط العلوي (SONY & PS4) ====== */
+  /* ====== الشريط العلوي ====== */
   .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 24px 40px;
+    padding: 24px 45px;
   }
   .sony-logo {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: 900;
     letter-spacing: 5px;
     color: #ffffff;
-    opacity: 0.9;
+    opacity: 0.95;
   }
   .ps-right {
     text-align: right;
   }
   .ps4-title {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 900;
     letter-spacing: 3px;
     color: #ffffff;
     line-height: 1;
     margin: 0;
-    text-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+    text-shadow: 0 0 16px rgba(0, 170, 255, 0.8);
   }
   .ps4-subtitle {
-    font-size: 9px;
+    font-size: 9.5px;
     font-weight: 700;
     letter-spacing: 3px;
     color: #79a8d4;
@@ -62,35 +61,34 @@
     text-transform: uppercase;
   }
   .ps4-quote {
-    font-family: "Brush Script MT", "Segoe Script", cursive;
-    font-size: 19px;
+    font-family: "Segoe Script", "Brush Script MT", cursive;
+    font-size: 20px;
     color: #38bdf8;
-    margin-top: 10px;
+    margin-top: 8px;
     transform: rotate(-5deg);
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    display: inline-block;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
   }
 
-  /* ====== منطقة الهيدر والشعار المركزي ====== */
+  /* ====== المحتوى الأوسط والشعار ====== */
   .center-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    margin-top: -10px;
   }
 
-  /* الشعار الدائري المتوهج */
+  /* الشعار الدائري */
   .emblem-wrapper {
-    position: relative;
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    background: radial-gradient(circle, #0c2340 0%, #030a14 80%);
+    background: radial-gradient(circle at 50% 30%, #0d2847 0%, #030a14 80%);
     border: 3px solid #00aaff;
     box-shadow: 
       0 0 25px rgba(0, 170, 255, 0.6),
-      inset 0 0 20px rgba(0, 170, 255, 0.4);
+      inset 0 0 20px rgba(0, 170, 255, 0.35);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,43 +96,44 @@
     margin-bottom: 20px;
   }
   .emblem-ps-logo {
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 36px;
     fill: #ffffff;
     filter: drop-shadow(0 0 8px #00aaff);
   }
   .emblem-text {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 900;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: #ffffff;
-    line-height: 1.1;
-    margin-top: 6px;
+    line-height: 1.15;
+    margin-top: 5px;
     text-shadow: 0 0 6px #00aaff;
   }
   .emblem-sub {
-    font-size: 8px;
-    font-weight: 700;
+    font-size: 8.5px;
+    font-weight: 800;
     letter-spacing: 2px;
     color: #38bdf8;
+    margin-top: 2px;
   }
   .emblem-shapes {
-    font-size: 7px;
+    font-size: 8px;
     letter-spacing: 3px;
     color: #60a5fa;
     margin-top: 2px;
   }
 
-  /* العناوين الكبرى */
+  /* العناوين الكبرى بنمط الكروم */
   .brand-title {
-    font-size: 44px;
+    font-size: 46px;
     font-weight: 900;
     letter-spacing: 5px;
     text-transform: uppercase;
-    background: linear-gradient(180deg, #ffffff 30%, #70c4ff 70%, #0088ff 100%);
+    background: linear-gradient(180deg, #ffffff 25%, #8ecaff 65%, #007ae6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.45));
+    filter: drop-shadow(0 0 20px rgba(0, 150, 255, 0.5));
     margin: 0;
   }
   .hub-divider {
@@ -142,7 +141,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     margin: 6px 0 10px;
   }
   .hub-line {
@@ -155,7 +154,7 @@
     background: linear-gradient(90deg, #ffffff, #00b4ff, transparent);
   }
   .hub-text {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 800;
     letter-spacing: 6px;
     color: #ffffff;
@@ -164,25 +163,24 @@
   }
   .tagline {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 6px;
-    color: #64748b;
-    margin-bottom: 26px;
+    color: #5c708a;
+    margin-bottom: 25px;
   }
 
-  /* ====== البطاقات ولوحة المعلومات (HUD Panels) ====== */
+  /* ====== بطاقات الـ HUD ولوحة المعلومات ====== */
   .hud-container {
-    width: 100%;
-    max-width: 780px;
-    margin: 0 auto;
+    width: 92%;
+    max-width: 820px;
     display: flex;
     flex-direction: column;
     gap: 16px;
   }
 
-  /* البطاقة العلوية (3 أعمدة: Firmware, Exploit, Cache) */
+  /* بطاقة المعلومات الثلاثية */
   .stats-card {
-    background: rgba(6, 17, 33, 0.75);
+    background: rgba(6, 17, 33, 0.85);
     border: 2px solid #0099ff;
     border-radius: 18px;
     padding: 16px 24px;
@@ -190,25 +188,24 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 
-      0 0 25px rgba(0, 153, 255, 0.3),
-      inset 0 0 18px rgba(0, 153, 255, 0.12);
+      0 0 25px rgba(0, 153, 255, 0.35),
+      inset 0 0 16px rgba(0, 153, 255, 0.15);
   }
   .stat-col {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 0 12px;
+    gap: 15px;
+    padding: 2px 14px;
   }
   .stat-col:not(:last-child) {
     border-right: 1px solid rgba(0, 153, 255, 0.25);
   }
   .stat-icon {
-    width: 36px;
-    height: 36px;
-    fill: #00d0ff;
-    filter: drop-shadow(0 0 10px rgba(0, 208, 255, 0.8));
+    width: 38px;
+    height: 38px;
     flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.8));
   }
   .stat-info {
     text-align: left;
@@ -216,15 +213,15 @@
   }
   .stat-label {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1.5px;
-    color: #6b829d;
+    color: #6d86a4;
     text-transform: uppercase;
     margin-bottom: 2px;
   }
   .stat-val {
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 800;
     color: #ffffff;
     white-space: nowrap;
     overflow: hidden;
@@ -232,33 +229,35 @@
   }
   .stat-sub {
     font-size: 10px;
-    color: #486581;
+    color: #4b6888;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 1px;
   }
 
-  /* البطاقة السفلية (حالة التحميل والنظام - State Bar) */
+  /* بطاقة شريط الحالة السفلية */
   .state-card {
-    background: rgba(6, 17, 33, 0.85);
+    background: rgba(6, 17, 33, 0.88);
     border: 2px solid #0099ff;
     border-radius: 18px;
-    padding: 16px 24px;
+    padding: 16px 26px;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     box-shadow: 
-      0 0 25px rgba(0, 153, 255, 0.3),
-      inset 0 0 18px rgba(0, 153, 255, 0.12);
+      0 0 25px rgba(0, 153, 255, 0.35),
+      inset 0 0 16px rgba(0, 153, 255, 0.15);
   }
   .spinner {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border: 3.5px solid rgba(0, 153, 255, 0.2);
     border-top: 3.5px solid #00e1ff;
+    border-right: 3.5px solid #00e1ff;
     border-radius: 50%;
-    animation: spin 0.85s linear infinite;
-    box-shadow: 0 0 14px rgba(0, 225, 255, 0.6);
+    animation: spin 0.8s linear infinite;
+    box-shadow: 0 0 12px rgba(0, 225, 255, 0.6);
     flex-shrink: 0;
   }
   @keyframes spin {
@@ -266,9 +265,8 @@
     100% { transform: rotate(360deg); }
   }
 
-  /* عناصر الكود القديمة محفوظة بنفس المعرفات IDs */
   #state {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 800;
     letter-spacing: 1.5px;
     color: #ffffff;
@@ -276,27 +274,23 @@
     margin: 0;
   }
   #state-sub {
-    font-size: 11px;
-    color: #7b94b0;
+    font-size: 11.5px;
+    color: #6d86a4;
     margin-top: 3px;
   }
 
-  /* عناصر التنبيه من الكود الأصلي */
-  .ok, .cacheok { color: #52e5a4 !important; text-shadow: 0 0 10px rgba(82, 229, 164, 0.6); }
-  .bad { color: #ff5269 !important; text-shadow: 0 0 10px rgba(255, 82, 105, 0.6); }
-  .warn { color: #00d2ff !important; text-shadow: 0 0 10px rgba(0, 210, 255, 0.6); }
+  .ok, .cacheok { color: #4ade80 !important; text-shadow: 0 0 10px rgba(74, 222, 128, 0.6); }
+  .bad { color: #f43f5e !important; text-shadow: 0 0 10px rgba(244, 63, 94, 0.6); }
+  .warn { color: #38bdf8 !important; text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
 
-  /* حفظ الحاويات الأصلية لتوافق JS التام دون تشويه التصميم */
-  #det { display: none; }
-  #cache { display: none; }
+  #det, #cache { display: none; }
 
-  /* ====== الفوتر السفلي ====== */
+  /* ====== الفوتر ====== */
   .footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 20px 40px;
-    margin-top: 20px;
+    padding: 24px 45px;
   }
   .footer-left {
     display: flex;
@@ -305,7 +299,7 @@
   }
   .ps-shapes {
     display: flex;
-    gap: 8px;
+    gap: 9px;
     font-size: 14px;
     font-weight: 900;
   }
@@ -314,27 +308,28 @@
   .shape-x { color: #4b8eff; }
   .shape-s { color: #ff62ba; }
   .footer-quote {
-    font-size: 9px;
+    font-size: 9.5px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #4a6380;
+    color: #435b75;
     text-transform: uppercase;
   }
   .footer-right {
     text-align: right;
   }
   .footer-name {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 3px;
-    color: #94a9c2;
+    color: #8fa5bf;
     text-transform: uppercase;
   }
   .footer-hub {
-    font-size: 9px;
+    font-size: 9.5px;
     font-weight: 600;
     letter-spacing: 2px;
-    color: #4a6380;
+    color: #435b75;
+    margin-top: 2px;
   }
 </style>
 </head>
@@ -353,9 +348,9 @@
   <!-- الشعار والعناوين الوسطى -->
   <div class="center-container">
     <div class="emblem-wrapper">
-      <!-- أيقونة بلايستيشن فيكتور مدمجة فائقة الوضوح -->
-      <svg class="emblem-ps-logo" viewBox="0 0 24 24">
-        <path d="M8.5,13.5 C9.2,13.5 10.1,13.2 10.9,12.5 C11.5,12 11.9,11.2 11.9,10.2 C11.9,8.5 10.7,7.7 8.9,7.7 L6.2,7.7 L6.2,16.2 L8.5,16.2 L8.5,13.5 Z M8.5,9.6 C9.4,9.6 9.8,9.9 9.8,10.4 C9.8,11 9.3,11.4 8.5,11.4 L8.5,9.6 Z M17.8,12.5 C16.6,12.5 15.6,12.8 14.8,13.5 L14.8,12.7 L12.7,12.7 L12.7,16.2 L14.8,16.2 L14.8,14.6 C15.3,14.2 15.9,14 16.6,14 C17.4,14 17.8,14.3 17.8,15 L17.8,16.2 L19.9,16.2 L19.9,14.7 C19.9,13.2 19,12.5 17.8,12.5 Z"/>
+      <!-- شعار بلايستيشن الرسمي الدقيق -->
+      <svg class="emblem-ps-logo" viewBox="0 0 1000 780">
+        <path d="M380.6 77.2c-56.9 14.4-96.2 59.5-96.2 121.7v240.2l128 44.4V234.3c0-42.5 24.3-64.8 61.3-64.8 37.1 0 61.3 22.3 61.3 64.8v202.9l128 44.4V198.9c0-82-62.1-137.9-153.2-137.9-46.7 0-93.5 6.2-129.2 16.2zM284.4 489.2L14.7 583.1C-3.8 589.6-4.9 607.7 12.3 614.9c50.7 21.2 153.6 42.4 272.1 42.4 122.9 0 205.1-23.7 248.8-51.4l-31.2-108.5c-42.5 19.3-108 34.3-181.6 34.3-66.2 0-101.4-9.3-101.4-23.7 0-11.4 17.5-19.3 65.4-36l-0.4 17.2zM985.3 583.1l-240.6-83.4 0.3-17.2c48 16.7 65.4 24.6 65.4 36 0 14.4-35.2 23.7-101.4 23.7-73.6 0-139.1-15-181.6-34.3l-31.2 108.5c43.7 27.7 125.9 51.4 248.8 51.4 118.5 0 221.4-21.2 272.1-42.4 17.2-7.2 16.1-25.3-2.4-31.8z"/>
       </svg>
       <div class="emblem-text">MOHAMED<br>RAMADAN</div>
       <div class="emblem-sub">PS4 HUB</div>
@@ -370,15 +365,17 @@
     </div>
     <div class="tagline">EXPLORE &bull; UNLOCK &bull; ENJOY</div>
 
-    <!-- بطاقات الـ HUD المطابقة للصورة -->
+    <!-- لوحة الـ HUD -->
     <div class="hud-container">
       
-      <!-- بطاقة الإحصائيات (Firmware - Exploit - Cache) -->
+      <!-- 1. بطاقة الإحصائيات -->
       <div class="stats-card">
-        <!-- 1. Firmware -->
+        <!-- المعالج Firmware -->
         <div class="stat-col">
-          <svg class="stat-icon" viewBox="0 0 24 24">
-            <path d="M6 4h12v2h2v12h-2v2H6v-2H4V6h2V4m3 4v8h6V8H9m-5 3h2v2H4v-2m16 0h2v2h-2v-2m-9-7h2v2h-2V4m0 16h2v2h-2v-2z"/>
+          <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="#00e1ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/>
           </svg>
           <div class="stat-info">
             <div class="stat-label">Firmware</div>
@@ -387,22 +384,25 @@
           </div>
         </div>
 
-        <!-- 2. Exploit -->
+        <!-- الثغرة Exploit -->
         <div class="stat-col">
-          <svg class="stat-icon" viewBox="0 0 24 24">
-            <path d="M19 8h-1.81a5.985 5.985 0 0 0-1.82-1.96l1.39-1.39-1.42-1.42-1.83 1.83C12.8 4.68 12 4.5 11.19 4.5s-1.61.18-2.32.56L7.04 3.23 5.62 4.65l1.39 1.39A5.985 5.985 0 0 0 5.19 8H3.38v2h2.09c-.05.33-.09.66-.09 1v1H3.38v2h2c0 .34.04.67.09 1H3.38v2h1.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3h1.81v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2c0-.34-.04-.67-.09-1h2.09V8z"/>
+          <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="#00e1ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="8" y="6" width="8" height="14" rx="4"/>
+            <path d="M6 13h12M4 7l4 3M20 7l-4 3M4 19l4-3M20 19l-4-3M10 2l1 4M14 2l-1 4"/>
           </svg>
           <div class="stat-info">
             <div class="stat-label">Exploit</div>
             <div class="stat-val" id="ui-bug">Detecting...</div>
-            <div class="stat-sub" id="ui-bug-sub">Checking type</div>
+            <div class="stat-sub" id="ui-bug-sub">Checking payload</div>
           </div>
         </div>
 
-        <!-- 3. Cache -->
+        <!-- الكاش Cache -->
         <div class="stat-col">
-          <svg class="stat-icon" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 4.02 2 6.5s4.48 4.5 10 4.5 10-2.02 10-4.5S17.52 2 12 2zm0 7c-4.41 0-8-1.57-8-2.5S7.59 4 12 4s8 1.57 8 2.5-3.59 2.5-8 2.5zm0 4.5c-5.52 0-10-2.02-10-4.5v3c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-3c0 2.48-4.48 4.5-10 4.5zm0 6.5c-5.52 0-10-2.02-10-4.5v3c0 2.48 4.48 4.5 10 4.5s10-2.02 10-4.5v-3c0 2.48-4.48 4.5-10 4.5z"/>
+          <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="#00e1ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
           </svg>
           <div class="stat-info">
             <div class="stat-label">Cache</div>
@@ -412,11 +412,10 @@
         </div>
       </div>
 
-      <!-- بطاقة الحالة وتفاعل المستخدم (Action Card) -->
+      <!-- 2. بطاقة شريط الحالة -->
       <div class="state-card">
         <div class="spinner" id="main-spinner"></div>
-        <div>
-          <!-- تم الحفاظ على معرّف ID="state" كما هو للربط البرمجي -->
+        <div style="text-align: left;">
           <div id="state">detecting firmware...</div>
           <div id="state-sub">Please wait while we check your PS4 system.</div>
         </div>
@@ -425,7 +424,7 @@
     </div>
   </div>
 
-  <!-- الحاويات البرمجية المرجعية للكود الأصلي -->
+  <!-- الحاويات المرجعية البرمجية -->
   <div id="det"></div>
   <div id="cache"></div>
 
@@ -446,14 +445,13 @@
     </div>
   </div>
 
-<!-- السكربت البرمجي (نفس اللوجيك والمسارات الأصلية تماماً بدون أي تغيير) -->
+<!-- المنطق البرمجي والمسارات (نفس الكود الأصلي تماماً دون أي تغيير) -->
 <script>
 (function () {
     var stateEl = document.getElementById("state");
     var detEl = document.getElementById("det");
     var cacheEl = document.getElementById("cache");
 
-    // عناصر الواجهة الرسومية الجديدة للربط البصري
     var uiFw = document.getElementById("ui-fw");
     var uiFwSub = document.getElementById("ui-fw-sub");
     var uiBug = document.getElementById("ui-bug");
@@ -467,11 +465,17 @@
         stateEl.textContent = t; 
         stateEl.className = c || ""; 
         if (c === "bad") {
-            spinnerEl.style.borderColor = "rgba(255,82,105,0.2)";
-            spinnerEl.style.borderTopColor = "#ff5269";
+            spinnerEl.style.borderColor = "rgba(244,63,94,0.2)";
+            spinnerEl.style.borderTopColor = "#f43f5e";
+            spinnerEl.style.borderRightColor = "#f43f5e";
+            spinnerEl.style.boxShadow = "0 0 12px rgba(244,63,94,0.6)";
             stateSubEl.textContent = "System halted or incompatible.";
         } else if (c === "warn") {
-            stateSubEl.textContent = "Press required button or waiting for system...";
+            spinnerEl.style.borderColor = "rgba(56,189,248,0.2)";
+            spinnerEl.style.borderTopColor = "#38bdf8";
+            spinnerEl.style.borderRightColor = "#38bdf8";
+            spinnerEl.style.boxShadow = "0 0 12px rgba(56,189,248,0.6)";
+            stateSubEl.textContent = "Press required button or waiting for user action...";
         } else {
             stateSubEl.textContent = "Executing payload chain...";
         }
@@ -512,7 +516,6 @@
         why = key + " -- no working bug (lapse ends at 12.02, poops needs 12.50)";
     }
 
-    // تحديث البيانات في الـ HUD لتماثل الصورة
     uiFw.textContent = key ? key : "Unknown";
     uiFwSub.textContent = key ? "Verified PS4" : "PC / Browser";
     uiBug.textContent = bug ? bug.toUpperCase() : "None";
