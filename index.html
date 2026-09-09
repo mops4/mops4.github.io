@@ -516,8 +516,7 @@
 
     detEl.innerHTML = "firmware <b>" + (key || "unknown") + "</b> &middot; bug <b>" + (bug || "none") + "</b>";
 
-    var target = (bug === "lapse" ? "run_lapse.html" : "run_poops.html") + location.search;
-
+    var target = bug === "lapse" ? "run_lapse.html" : "run_poops.html";
     function go() { 
         setState("جاري فتح مسار " + bug + "...", "warn"); 
         setTimeout(function() {
