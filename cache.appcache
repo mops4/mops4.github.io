@@ -1,12 +1,13 @@
 CACHE MANIFEST
-# MOHAMED RAMADAN PS4 MULTI-FW HUB
-# v10-universal
+# MOHAMED RAMADAN PS4 HUB - V-FIXED
+# 11.00 - 13.00 FULL SUPPORT
 
 CACHE:
 index.html
 run_lapse.html
 chain_lapse.js
 core.js
+core.js?v=10
 mem.js
 int64.js
 ps4_offsets.js
@@ -21,3 +22,7 @@ patches/1300.bin
 
 NETWORK:
 *
+
+FALLBACK:
+index.html index.html
+run_lapse.html run_lapse.html
