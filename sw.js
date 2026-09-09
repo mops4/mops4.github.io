@@ -1,4 +1,4 @@
-const CACHE_NAME = "mohamed-portal-v1";
+const CACHE_NAME = "mohamed-portal-v2";
 
 const ASSETS = [
   "./",
@@ -21,15 +21,23 @@ const ASSETS = [
   "./patches/1300.bin"
 ];
 
+// تثبيت الكاش وتخزين الملفات واحداً تلو الآخر لتفادي خطأ الملف الواحد
 self.addEventListener("install", function(event) {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(ASSETS);
+      return Promise.allSettled(
+        ASSETS.map(function(url) {
+          return cache.add(url).catch(function(err) {
+            console.warn("Failed to cache asset:", url, err);
+          });
+        })
+      );
     })
   );
-  self.skipWaiting();
 });
 
+// تفعيل الكاش وحذف النسخ القديمة
 self.addEventListener("activate", function(event) {
   event.waitUntil(
     caches.keys().then(function(keys) {
@@ -40,11 +48,13 @@ self.addEventListener("activate", function(event) {
           }
         })
       );
+    }).then(function() {
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
+// استدعاء الملفات من الذاكرة المحلية عند عدم وجود إنترنت
 self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
