@@ -249,6 +249,14 @@
   </div>
 </div>
 
-<script type="module">import "./chain_lapse.js";</script>
+<!-- تسجيل الكاش وتشغيل السكربت -->
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch(function(e) {
+        console.log("SW error:", e);
+    });
+}
+</script>
+<script type="module" src="./chain_lapse.js"></script>
 </body>
 </html>
