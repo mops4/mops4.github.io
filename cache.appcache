@@ -1,6 +1,6 @@
 CACHE MANIFEST
-# MOHAMED RAMADAN PS4 HUB
-# 1202-clean-v7
+# MOHAMED RAMADAN PS4 MULTI-FW HUB
+# v10-universal
 
 CACHE:
 index.html
@@ -10,6 +10,7 @@ core.js
 mem.js
 int64.js
 ps4_offsets.js
+rpc_worker.js
 logo.png
 payload.bin
 patches/1100.bin
