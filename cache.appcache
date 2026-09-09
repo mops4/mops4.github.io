@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# MOHAMED RAMADAN PS4 HUB - V-FIXED
-# 11.00 - 13.00 FULL SUPPORT
+# MOHAMED RAMADAN PS4 DUAL-HUB
+# v-final-match
 
 CACHE:
 index.html
 run_lapse.html
+run_poops.html
 chain_lapse.js
+chain_poops.js
 core.js
 core.js?v=10
 mem.js
@@ -26,3 +28,4 @@ NETWORK:
 FALLBACK:
 index.html index.html
 run_lapse.html run_lapse.html
+run_poops.html run_poops.html
