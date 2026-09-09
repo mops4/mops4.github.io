@@ -1,23 +1,18 @@
 CACHE MANIFEST
 # MOHAMED RAMADAN PS4 HUB
-# build 2
+# v5-verified
 
 CACHE:
 index.html
 run_lapse.html
-run_poops.html
-
 chain_lapse.js
-chain_poops.js
 core.js
 mem.js
 int64.js
 ps4_offsets.js
 rpc_worker.js
-
 logo.png
 payload.bin
-
 patches/1100.bin
 patches/1150.bin
 patches/1200.bin
@@ -26,8 +21,3 @@ patches/1300.bin
 
 NETWORK:
 *
-
-FALLBACK:
-index.html index.html
-run_lapse.html run_lapse.html
-run_poops.html run_poops.html
