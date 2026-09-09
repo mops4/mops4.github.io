@@ -9,7 +9,6 @@ run_poops.html
 
 chain_lapse.js
 chain_poops.js
-
 core.js
 mem.js
 int64.js
@@ -27,3 +26,8 @@ patches/1300.bin
 
 NETWORK:
 *
+
+FALLBACK:
+index.html index.html
+run_lapse.html run_lapse.html
+run_poops.html run_poops.html
