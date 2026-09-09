@@ -243,20 +243,68 @@
     <div id="out"></div>
   </div>
 
-  <div class="bottom-info">
+ <div class="bottom-info">
     <div>PLAY HAS NO LIMITS</div>
     <div>MOHAMED RAMADAN &mdash; PS4 HUB</div>
   </div>
 </div>
 
-<!-- تسجيل الكاش وتشغيل السكربت -->
+<!-- معالج الأوفلاين وطباعة الأخطاء الحية -->
 <script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(function(e) {
-        console.log("SW error:", e);
-    });
-}
+(function() {
+    var outEl = document.getElementById("out");
+    var stateEl = document.getElementById("state");
+
+    // صائد الأخطاء: إظهار أي عطل مباشرة في الكونسول بدلاً من الشاشة الفارغة
+    window.onerror = function(msg, url, line) {
+        if (stateEl) { stateEl.textContent = "EXECUTION ERROR"; stateEl.className = "bad"; }
+        if (outEl) { outEl.textContent += "\n[JS-ERROR] " + msg + " (Line " + line + ")"; }
+    };
+    window.onunhandledrejection = function(e) {
+        if (stateEl) { stateEl.textContent = "PAYLOAD ERROR"; stateEl.className = "bad"; }
+        if (outEl) { outEl.textContent += "\n[PROMISE-REJECT] " + (e.reason ? (e.reason.message || e.reason) : e); }
+    };
+
+    // تحويل fetch إلى XMLHttpRequest ليعمل مع كاش البلايستيشن أوفلاين 100%
+    var originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+        return new Promise(function(resolve, reject) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.responseType = "arraybuffer";
+            xhr.onload = function() {
+                if (xhr.status === 200 || xhr.status === 0) { // 0 تعني محلياً من الكاش أوفلاين
+                    resolve({
+                        ok: true,
+                        status: xhr.status,
+                        arrayBuffer: function() { return Promise.resolve(xhr.response); },
+                        text: function() {
+                            var enc = new TextDecoder("utf-8");
+                            return Promise.resolve(enc.decode(xhr.response));
+                        },
+                        json: function() {
+                            var enc = new TextDecoder("utf-8");
+                            return Promise.resolve(JSON.parse(enc.decode(xhr.response)));
+                        }
+                    });
+                } else {
+                    reject(new Error("Failed to load: " + url + " (Status: " + xhr.status + ")"));
+                }
+            };
+            xhr.onerror = function() {
+                // إذا فشل XHR نحاول بالـ fetch الأصلي كحل بديل
+                if (originalFetch) {
+                    originalFetch(url, options).then(resolve).catch(reject);
+                } else {
+                    reject(new Error("Network Error loading " + url));
+                }
+            };
+            xhr.send();
+        });
+    };
+})();
 </script>
+
 <script type="module" src="./chain_lapse.js"></script>
 </body>
 </html>
